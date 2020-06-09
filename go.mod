@@ -1,3 +1,26 @@
 module github.com/ansrivas/bid-tracker
 
-go 1.13
+go 1.14
+
+require (
+	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+	github.com/arsmn/fiber-swagger v1.3.1
+	github.com/go-openapi/spec v0.19.8 // indirect
+	github.com/go-openapi/swag v0.19.9 // indirect
+	github.com/gofiber/embed v0.1.0 // indirect
+	github.com/gofiber/fiber v1.11.0
+	github.com/gofrs/uuid v3.3.0+incompatible
+	github.com/klauspost/compress v1.10.8 // indirect
+	github.com/kr/text v0.2.0 // indirect
+	github.com/mailru/easyjson v0.7.1 // indirect
+	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
+	github.com/pkg/errors v0.9.1
+	github.com/rs/zerolog v1.19.0
+	github.com/stretchr/testify v1.6.1
+	github.com/swaggo/swag v1.6.7
+	golang.org/x/net v0.0.0-20200602114024-627f9648deb9 // indirect
+	golang.org/x/tools v0.0.0-20200610160956-3e83d1e96d0e // indirect
+	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
+	gopkg.in/yaml.v2 v2.3.0 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20200605160147-a5ece683394c // indirect
+)

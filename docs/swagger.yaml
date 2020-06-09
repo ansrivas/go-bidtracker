@@ -1,0 +1,176 @@
+basePath: /
+definitions:
+  api.Response:
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+  api.ResponseBid:
+    properties:
+      data:
+        $ref: '#/definitions/bidtracker.Bid'
+        type: object
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+  api.ResponseGetBids:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/bidtracker.Bid'
+        type: array
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+  bidtracker.Bid:
+    properties:
+      amount:
+        type: number
+      timestamp:
+        type: integer
+      useruuid:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: Bid-Tracker swagger implementations
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Bid-Tracker API
+  version: "1.0"
+paths:
+  /bids/{itemuuid}:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: itemuuid
+        in: path
+        name: itemuuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ResponseGetBids'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Get all current bids on an item
+      tags:
+      - Bids
+    post:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: itemuuid
+        in: path
+        name: itemuuid
+        required: true
+        type: string
+      - description: Bid
+        in: body
+        name: Bid
+        required: true
+        schema:
+          $ref: '#/definitions/bidtracker.Bid'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ResponseBid'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Post a new bid
+      tags:
+      - Bids
+  /bids/{itemuuid}/winning:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: itemuuid
+        in: path
+        name: itemuuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ResponseBid'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Get currently winning bids
+      tags:
+      - Bids
+  /users/{useruuid}/bids:
+    get:
+      consumes:
+      - application/json
+      description: Get all the bids of a user by its uuid
+      parameters:
+      - description: useruuid
+        in: path
+        name: useruuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ResponseGetBids'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Get all the bids of a user
+      tags:
+      - User
+swagger: "2.0"
