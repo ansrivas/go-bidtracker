@@ -41,15 +41,16 @@ func main() {
 		uuid.Must(uuid.FromString("b2f9ee6d-79fe-4b14-9c19-35a69a89219a")),
 		uuid.Must(uuid.FromString("b16ab43e-aa13-4079-b8c5-592e81312c01")),
 	}
-	items := bidtracker.NewBidManagement(biddableItems...)
+	bidTracker := bidtracker.NewBidManagement(biddableItems...)
 
 	server := fiber.New()
-	server.Use("/swagger", swagger.Handler) // default
 
+	server.Use("/swagger", swagger.Handler)            // default
 	server.Use("/swagger", swagger.New(swagger.Config{ // custom
 		URL:         "http://example.com/doc.json",
 		DeepLinking: false,
 	}))
+
 	// Enable prefork 🚀
 	// server.Settings.Prefork = true
 	// Do not enable it yet because everything is in memory so each request will
@@ -66,7 +67,7 @@ func main() {
 
 	server.Use(middleware.Recover())
 
-	api := app.NewAPIWithSettings(items, server)
+	api := app.NewAPIWithSettings(bidTracker, server)
 	app.RegisterRoutes(api,
 		app.RegisterWithAPIVersion("/api/v1"),
 	)

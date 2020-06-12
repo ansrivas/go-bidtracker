@@ -32,49 +32,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/bids/{itemuuid}": {
-            "get": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Bids"
-                ],
-                "summary": "Get all current bids on an item",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "itemuuid",
-                        "name": "itemuuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ResponseGetBids"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/api.Response"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/api.Response"
-                        }
-                    }
-                }
-            },
+        "/bids": {
             "post": {
                 "description": "get string by ID",
                 "consumes": [
@@ -118,8 +76,52 @@ var doc = `{
                             "$ref": "#/definitions/api.Response"
                         }
                     },
-                    "500": {
-                        "description": "Internal Server Error",
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/bids/{itemuuid}": {
+            "get": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Bids"
+                ],
+                "summary": "Get all current bids on an item",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "itemuuid",
+                        "name": "itemuuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.ResponseGetBids"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.Response"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
                         "schema": {
                             "$ref": "#/definitions/api.Response"
                         }
@@ -162,8 +164,8 @@ var doc = `{
                             "$ref": "#/definitions/api.Response"
                         }
                     },
-                    "500": {
-                        "description": "Internal Server Error",
+                    "422": {
+                        "description": "Unprocessable Entity",
                         "schema": {
                             "$ref": "#/definitions/api.Response"
                         }
@@ -268,6 +270,9 @@ var doc = `{
             "properties": {
                 "amount": {
                     "type": "number"
+                },
+                "itemuuid": {
+                    "type": "string"
                 },
                 "timestamp": {
                     "type": "integer"

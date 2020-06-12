@@ -136,5 +136,4 @@ func (api *API) GetHandlerCurrentWinningBid(c *fiber.Ctx) {
 	}
 	SendJSON(c, fiber.StatusOK, "Success", bid)
 	return
-
 }

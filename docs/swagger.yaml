@@ -34,6 +34,8 @@ definitions:
     properties:
       amount:
         type: number
+      itemuuid:
+        type: string
       timestamp:
         type: integer
       useruuid:
@@ -52,35 +54,7 @@ info:
   title: Bid-Tracker API
   version: "1.0"
 paths:
-  /bids/{itemuuid}:
-    get:
-      consumes:
-      - application/json
-      description: get string by ID
-      parameters:
-      - description: itemuuid
-        in: path
-        name: itemuuid
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/api.ResponseGetBids'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/api.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/api.Response'
-      summary: Get all current bids on an item
-      tags:
-      - Bids
+  /bids:
     post:
       consumes:
       - application/json
@@ -108,11 +82,40 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/api.Response'
-        "500":
-          description: Internal Server Error
+        "422":
+          description: Unprocessable Entity
           schema:
             $ref: '#/definitions/api.Response'
       summary: Post a new bid
+      tags:
+      - Bids
+  /bids/{itemuuid}:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: itemuuid
+        in: path
+        name: itemuuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ResponseGetBids'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Get all current bids on an item
       tags:
       - Bids
   /bids/{itemuuid}/winning:
@@ -137,8 +140,8 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/api.Response'
-        "500":
-          description: Internal Server Error
+        "422":
+          description: Unprocessable Entity
           schema:
             $ref: '#/definitions/api.Response'
       summary: Get currently winning bids

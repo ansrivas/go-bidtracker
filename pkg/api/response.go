@@ -56,11 +56,19 @@ func SendJSON(c *fiber.Ctx, statusCode int, message string, data interface{}) {
 	var resp interface{}
 
 	switch val := data.(type) {
+
 	case bidtracker.Bid:
 		resp = ResponseBid{
 			Status:  statusCode,
 			Message: message,
 			Data:    val,
+		}
+
+	case *bidtracker.Bid:
+		resp = ResponseBid{
+			Status:  statusCode,
+			Message: message,
+			Data:    *val,
 		}
 	case []bidtracker.Bid:
 		resp = ResponseGetBids{
