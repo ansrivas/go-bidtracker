@@ -12,6 +12,8 @@ github.com/andybalholm/brotli v1.0.0 h1:7UCwP93aiSfvWpapti8g88vVVGp2qqtGyePsSuDa
 github.com/andybalholm/brotli v1.0.0/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/arsmn/fiber-swagger v1.3.1 h1:eCar33AKyfHQopSuiyeuIQp9+4YDffXwumm5GxovcEQ=
 github.com/arsmn/fiber-swagger v1.3.1/go.mod h1:c3h51oSzdGxK04xvoEblcO0pWvc1ufFOlIZ49Ab3yHM=
+github.com/arsmn/fiber-swagger v1.3.2 h1:rggR91GbZtE+udhlfwB3Xryliim9R4PqnyR/sqTkrlY=
+github.com/arsmn/fiber-swagger v1.3.2/go.mod h1:SH2HB89UsByteG1r7//QGbKA2BTkLAQ0wsBCRvkIAsU=
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d h1:U+s90UTSYgptZMwQh2aRr3LuazLJIa+Pg3Kc1ylSYVY=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
