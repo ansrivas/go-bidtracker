@@ -62,7 +62,7 @@ func TestPostHandlerBidNew(t *testing.T) {
 	// Do something with results:
 	if resp.StatusCode == 200 {
 		got := string(body)
-		assert.Equal(want, got, "hello equals hello")
+		assert.Equal(want, got, fmt.Sprintf("Want %v, Got %v", want, got))
 	} else {
 		assert.Fail(fmt.Sprintf("Failed response from the server %d. %s", resp.StatusCode, string(body)))
 	}
@@ -129,7 +129,7 @@ func TestGetHandlerBids(t *testing.T) {
 	// Do something with results:
 	if resp.StatusCode == 200 {
 		got := string(body)
-		assert.Equal(want, got, "hello equals hello")
+		assert.Equal(want, got, fmt.Sprintf("Want %v, Got %v", want, got))
 	} else {
 		assert.Fail(fmt.Sprintf("Failed response from the server %d. %s", resp.StatusCode, string(body)))
 	}
