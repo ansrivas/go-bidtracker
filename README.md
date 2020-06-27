@@ -1,5 +1,8 @@
 bid-tracker:
+Bid Tracker
 ---
+
+![Test](https://github.com/ansrivas/go-bidtracker/workflows/Test/badge.svg)
 
 A simple project to implement bid-tracker interface and concrete implementation with the following functionality:
 
