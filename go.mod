@@ -7,7 +7,7 @@ require (
 	github.com/arsmn/fiber-swagger v1.3.2
 	github.com/go-openapi/spec v0.19.8 // indirect
 	github.com/go-openapi/swag v0.19.9 // indirect
-	github.com/gofiber/fiber v1.12.1
+	github.com/gofiber/fiber v1.12.2
 	github.com/gofrs/uuid v3.3.0+incompatible
 	github.com/klauspost/compress v1.10.10 // indirect
 	github.com/kr/text v0.2.0 // indirect
