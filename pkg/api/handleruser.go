@@ -22,7 +22,7 @@
 package api
 
 import (
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
 )
@@ -39,24 +39,20 @@ import (
 // @Failure 500 {object} Response
 // @Router /users/{useruuid}/bids [get]
 // GetHandlerUserBidGetAll handles GET request to get all the bids of a user
-func (api *API) GetHandlerUserBidGetAll(c *fiber.Ctx) {
+func (api *API) GetHandlerUserBidGetAll(c *fiber.Ctx) error {
 
 	var useruuid uuid.UUID
 	var err error
 
 	if useruuid, err = uuid.FromString(c.Params("useruuid")); err != nil {
 		msg := errors.WithMessage(err, "useruuid can not be parsed successfully").Error()
-		SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
 	}
 
 	bids, err := api.itemsBid.GetBidsByUser(useruuid)
 	if err != nil {
 		msg := errors.WithMessage(err, "Failed to fetch the bids for given useruuid").Error()
-		SendJSON(c, fiber.StatusInternalServerError, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusInternalServerError, msg, EmptyResponse)
 	}
-	SendJSON(c, fiber.StatusOK, "Success", bids)
-	return
-
+	return SendJSON(c, fiber.StatusOK, "Success", bids)
 }

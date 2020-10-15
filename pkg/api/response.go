@@ -23,7 +23,7 @@ package api
 
 import (
 	"github.com/ansrivas/bid-tracker/pkg/bidtracker"
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 )
 
 // Response being sent out from the server
@@ -51,7 +51,7 @@ type ResponseGetBids struct {
 var EmptyResponse = make(map[string]interface{})
 
 // SendJSON is a wrapper over exisiting json response of fiber
-func SendJSON(c *fiber.Ctx, statusCode int, message string, data interface{}) {
+func SendJSON(c *fiber.Ctx, statusCode int, message string, data interface{}) error {
 
 	var resp interface{}
 
@@ -84,7 +84,5 @@ func SendJSON(c *fiber.Ctx, statusCode int, message string, data interface{}) {
 		}
 	}
 
-	if err := c.Status(statusCode).JSON(resp); err != nil {
-		c.Status(500).Send(err)
-	}
+	return c.Status(statusCode).JSON(resp)
 }

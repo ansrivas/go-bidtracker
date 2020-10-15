@@ -31,7 +31,7 @@ import (
 	"time"
 
 	"github.com/ansrivas/bid-tracker/pkg/bidtracker"
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/assert"
 )

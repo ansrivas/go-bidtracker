@@ -23,7 +23,7 @@ package api
 
 import (
 	"github.com/ansrivas/bid-tracker/pkg/bidtracker"
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 )
 
 // API is the base struct for this implementation

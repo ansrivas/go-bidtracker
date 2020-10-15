@@ -23,7 +23,7 @@ package api
 
 import (
 	"github.com/ansrivas/bid-tracker/pkg/bidtracker"
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofrs/uuid"
 	"github.com/pkg/errors"
 )
@@ -41,7 +41,7 @@ import (
 // @Failure 422 {object} Response
 // @Router /bids [post]
 // PostHandlerBidNew handles all the POST requests regarding creation of new bids
-func (api *API) PostHandlerBidNew(c *fiber.Ctx) {
+func (api *API) PostHandlerBidNew(c *fiber.Ctx) error {
 
 	// var itemuuid uuid.UUID
 	// var err error
@@ -57,18 +57,15 @@ func (api *API) PostHandlerBidNew(c *fiber.Ctx) {
 	userBid := new(bidtracker.Bid)
 	if err := c.BodyParser(userBid); err != nil {
 		msg := errors.WithMessage(err, "json body can not be parsed successfully").Error()
-		SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
 	}
 
 	if err := api.itemsBid.InsertBid(userBid); err != nil {
 		msg := errors.WithMessage(err, "Failed to insert the bid").Error()
-		SendJSON(c, fiber.StatusUnprocessableEntity, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusUnprocessableEntity, msg, EmptyResponse)
 	}
 
-	SendJSON(c, fiber.StatusOK, "Updated the bid", userBid)
-	return
+	return SendJSON(c, fiber.StatusOK, "Updated the bid", userBid)
 }
 
 // GetHandlerBids godoc
@@ -83,26 +80,24 @@ func (api *API) PostHandlerBidNew(c *fiber.Ctx) {
 // @Failure 422 {object} Response
 // @Router /bids/{itemuuid} [get]
 // GetHandlerBids handles all the GET requests regarding creation of new bids
-func (api *API) GetHandlerBids(c *fiber.Ctx) {
+func (api *API) GetHandlerBids(c *fiber.Ctx) error {
 
 	var itemuuid uuid.UUID
 	var err error
 
 	if itemuuid, err = uuid.FromString(c.Params("itemuuid")); err != nil {
 		msg := errors.WithMessage(err, "itemuuid can not be parsed successfully").Error()
-		SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
+
 	}
 
 	bids, err := api.itemsBid.GetBids(itemuuid)
 	if err != nil {
 		msg := errors.WithMessage(err, "Failed to fetch the list of bids").Error()
-		SendJSON(c, fiber.StatusUnprocessableEntity, msg, EmptyResponse)
-		return
-	}
-	SendJSON(c, fiber.StatusOK, "Success", bids)
-	return
+		return SendJSON(c, fiber.StatusUnprocessableEntity, msg, EmptyResponse)
 
+	}
+	return SendJSON(c, fiber.StatusOK, "Success", bids)
 }
 
 // GetHandlerCurrentWinningBid godoc
@@ -117,23 +112,20 @@ func (api *API) GetHandlerBids(c *fiber.Ctx) {
 // @Failure 422 {object} Response
 // @Router /bids/{itemuuid}/winning [get]
 // GetHandlerCurrentWinningBid handles all the GET requests to get currently winning bids
-func (api *API) GetHandlerCurrentWinningBid(c *fiber.Ctx) {
+func (api *API) GetHandlerCurrentWinningBid(c *fiber.Ctx) error {
 
 	var itemuuid uuid.UUID
 	var err error
 
 	if itemuuid, err = uuid.FromString(c.Params("itemuuid")); err != nil {
 		msg := errors.WithMessage(err, "itemuuid can not be parsed successfully").Error()
-		SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusBadRequest, msg, EmptyResponse)
 	}
 
 	bid, err := api.itemsBid.CurrentWinningBid(itemuuid)
 	if err != nil {
 		msg := errors.WithMessage(err, "Failed to fetch the current winning bid").Error()
-		SendJSON(c, fiber.StatusUnprocessableEntity, msg, EmptyResponse)
-		return
+		return SendJSON(c, fiber.StatusUnprocessableEntity, msg, EmptyResponse)
 	}
-	SendJSON(c, fiber.StatusOK, "Success", bid)
-	return
+	return SendJSON(c, fiber.StatusOK, "Success", bid)
 }
