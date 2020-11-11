@@ -68,9 +68,13 @@ func main() {
 	server.Use(recover.New())
 
 	api := app.NewAPIWithSettings(bidTracker, server)
-	app.RegisterRoutes(api,
+	err := app.RegisterRoutes(api,
 		app.RegisterWithAPIVersion("/api/v1"),
 	)
+	if err != nil {
+		log.Error().Msgf("Failed to register routes %s", err.Error())
+		os.Exit(1)
+	}
 
 	// Register a ctrl-c handler
 	errc := make(chan error)
