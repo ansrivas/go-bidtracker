@@ -6,7 +6,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/arsmn/fiber-swagger/v2 v2.11.0
 	github.com/go-openapi/spec v0.20.0 // indirect
-	github.com/gofiber/fiber/v2 v2.12.0
+	github.com/gofiber/fiber/v2 v2.13.0
 	github.com/gofrs/uuid v3.4.0+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.23.0
