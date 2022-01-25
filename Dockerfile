@@ -1,4 +1,4 @@
-FROM golang:1.15-buster as build-env
+FROM golang:1.17-buster as build-env
 
 ENV GOPROXY=https://proxy.golang.org
 

@@ -45,7 +45,7 @@ func main() {
 
 	server := fiber.New()
 
-	server.Use("/swagger", swagger.Handler)            // default
+	server.Use("/swagger", swagger.HandlerDefault)     // default
 	server.Use("/swagger", swagger.New(swagger.Config{ // custom
 		URL:         "http://example.com/doc.json",
 		DeepLinking: false,
