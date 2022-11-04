@@ -8,7 +8,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.39.0
 	github.com/gofrs/uuid v4.3.1+incompatible
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.27.0
+	github.com/rs/zerolog v1.28.0
 	github.com/stretchr/testify v1.8.1
 	github.com/swaggo/swag v1.8.7
 )
