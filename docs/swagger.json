@@ -207,9 +207,7 @@
         "api.Response": {
             "type": "object",
             "properties": {
-                "data": {
-                    "type": "object"
-                },
+                "data": {},
                 "message": {
                     "type": "string"
                 },
@@ -222,7 +220,6 @@
             "type": "object",
             "properties": {
                 "data": {
-                    "type": "object",
                     "$ref": "#/definitions/bidtracker.Bid"
                 },
                 "message": {

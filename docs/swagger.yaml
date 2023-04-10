@@ -2,8 +2,7 @@ basePath: /
 definitions:
   api.Response:
     properties:
-      data:
-        type: object
+      data: {}
       message:
         type: string
       status:
@@ -13,7 +12,6 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/bidtracker.Bid'
-        type: object
       message:
         type: string
       status:

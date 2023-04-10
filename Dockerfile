@@ -1,22 +1,20 @@
-FROM golang:1.17-buster as build-env
+FROM golang:1.20-buster as build-env
 
 ENV GOPROXY=https://proxy.golang.org
 
+ADD . /opt/src
+
+WORKDIR /opt/src
+
 RUN apt-get -y update \
     && apt-get install -y make git upx wget curl tar musl* \
-    && go get -u github.com/go-bindata/go-bindata \
-    && go get -u github.com/go-bindata/go-bindata/... \
-    && go get -u github.com/swaggo/swag/cmd/swag
+    && go install github.com/swaggo/swag/cmd/swag@latest
 
 ARG BUILD_DATE
 ARG VCS_REF
 
-WORKDIR /opt/src
-
-ADD . /opt/src
-
 RUN export PATH=/go/bin:$PATH && \
-    swag init pkg/api/ && \
+    swag init && \
     CC=/usr/local/bin/musl-gcc CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/bid-tracker  -a -ldflags '-extldflags "-static" -s -w'  .
 
 RUN upx /opt/src/build/bid-tracker
