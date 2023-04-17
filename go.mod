@@ -3,7 +3,7 @@ module github.com/ansrivas/bid-tracker
 go 1.20
 
 require (
-	github.com/gofiber/fiber/v2 v2.43.0
+	github.com/gofiber/fiber/v2 v2.44.0
 	github.com/gofiber/swagger v0.1.10
 	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/pkg/errors v0.9.1
