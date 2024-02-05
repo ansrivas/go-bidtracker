@@ -7,7 +7,7 @@ require (
 	github.com/gofiber/swagger v0.1.13
 	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/pkg/errors v0.9.1
-	github.com/rs/zerolog v1.31.0
+	github.com/rs/zerolog v1.32.0
 	github.com/stretchr/testify v1.8.3
 	github.com/swaggo/swag v1.16.2
 )
